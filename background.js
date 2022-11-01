@@ -1,5 +1,3 @@
-var ids = {}
-
 chrome.tabs.onUpdated.addListener(function(tabId, changeInfo, tab) {
   const tab1BasedIndex = tab.index + 1
   const regexp = new RegExp(`^\\[${tab1BasedIndex}\\] `) 

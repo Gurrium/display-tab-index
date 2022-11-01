@@ -4,11 +4,9 @@ chrome.tabs.onUpdated.addListener(function(tabId, changeInfo, tab) {
 
   if (0 < tab1BasedIndex && tab1BasedIndex < 9 && !regexp.test(tab.title)) {
     chrome.scripting.executeScript({
-      injection: {
-        target: { tabId: tab.id },
-        args: [tab1BasedIndex, tab.title],
-        func: (index, title) => { alert("hoge"); document.title = `[${index}] ${title}` }
-      }
+      target: { tabId: tab.id },
+      args: [tab1BasedIndex, tab.title],
+      func: (index, title) => { document.title = `[${index}] ${title}` }
     })
   }
 })

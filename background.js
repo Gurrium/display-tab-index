@@ -1,4 +1,22 @@
-chrome.tabs.onUpdated.addListener(function(tabId, changeInfo, tab) {
+chrome.tabs.onUpdated.addListener(function(tabId, chagneInfo, tab) {
+  updateTab(tab)
+})
+
+chrome.tabs.onCreated.addListener(function(tab) {
+  updateTabs()
+})
+
+chrome.tabs.onDetached.addListener(function(tab) {
+  updateTabs()
+})
+
+function updateTabsInCurrentWindow() {
+  chrome.tabs.query({ currentWindow: true }, function(tabs) {
+    tabs.forEach(tab => updateTab(tab))
+  })
+}
+
+function updateTab(tab) {
   const tab1BasedIndex = tab.index + 1
   const regexp = new RegExp(`^\\[${tab1BasedIndex}\\] `) 
 
@@ -9,4 +27,4 @@ chrome.tabs.onUpdated.addListener(function(tabId, changeInfo, tab) {
       func: (index, title) => { document.title = `[${index}] ${title}` }
     })
   }
-})
+}

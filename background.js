@@ -17,14 +17,29 @@ function updateTabsInCurrentWindow() {
 }
 
 function updateTab(tab) {
-  const tab1BasedIndex = tab.index + 1
-  const regexp = new RegExp(`^\\[${tab1BasedIndex}\\] `) 
+  const indices = [
+    '1️⃣',
+    '2️⃣',
+    '3️⃣',
+    '4️⃣',
+    '5️⃣',
+    '6️⃣',
+    '7️⃣',
+    '8️⃣',
+  ]
 
-  if (0 < tab1BasedIndex && tab1BasedIndex < 9 && !regexp.test(tab.title)) {
+  const splitTitle = tab.title.split(' ')[0]
+  console.log(splitTitle)
+  if (splitTitle.length >= 2 && indices.includes(splitTitle[0])) {
+    console.log('here')
+    tab.title = tab.title.split(' ')[1]
+  }
+
+  if (0 <= tab.index && tab.index <= 7) {
     chrome.scripting.executeScript({
       target: { tabId: tab.id },
-      args: [tab1BasedIndex, tab.title],
-      func: (index, title) => { document.title = `[${index}] ${title}` }
+      args: [indices[tab.index], tab.title],
+      func: (index, title) => { document.title = `${index} ${title}` }
     })
   }
 }

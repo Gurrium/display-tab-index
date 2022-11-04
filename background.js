@@ -16,17 +16,18 @@ function updateTabsInCurrentWindow() {
   })
 }
 
+const indices = [
+  '1️⃣',
+  '2️⃣',
+  '3️⃣',
+  '4️⃣',
+  '5️⃣',
+  '6️⃣',
+  '7️⃣',
+  '8️⃣',
+]
+
 function updateTab(tab) {
-  const indices = [
-    '1️⃣',
-    '2️⃣',
-    '3️⃣',
-    '4️⃣',
-    '5️⃣',
-    '6️⃣',
-    '7️⃣',
-    '8️⃣',
-  ]
 
   const splitTitle = tab.title.split(' ')[0]
   console.log(splitTitle)

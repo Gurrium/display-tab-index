@@ -30,19 +30,22 @@ const indices = [
 ]
 
 function updateTab(tab) {
+  var title = tab.title
+  const splitTitle = title.split(' ')
 
-  const splitTitle = tab.title.split(' ')[0]
-  console.log(splitTitle)
+  if (indices[tab.index] == splitTitle[0]) { return }
+
   if (splitTitle.length >= 2 && indices.includes(splitTitle[0])) {
-    console.log('here')
-    tab.title = tab.title.split(' ')[1]
+    title = splitTitle.slice(1).join(' ')
   }
 
   if (0 <= tab.index && tab.index <= 7) {
-    chrome.scripting.executeScript({
-      target: { tabId: tab.id },
-      args: [indices[tab.index], tab.title],
-      func: (index, title) => { document.title = `${index} ${title}` }
-    })
+    title = `${indices[tab.index]} ${title}`
   }
+
+  chrome.scripting.executeScript({
+    target: { tabId: tab.id },
+    args: [title],
+    func: (title) => { title'); document.title = title }
+  })
 }

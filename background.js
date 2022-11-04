@@ -1,4 +1,4 @@
-chrome.tabs.onUpdated.addListener(function(tabId, chagneInfo, tab) {
+chrome.tabs.onUpdated.addListener(function(tabId, changeInfo, tab) {
   updateTab(tab)
 })
 

@@ -3,11 +3,11 @@ chrome.tabs.onUpdated.addListener(function(tabId, chagneInfo, tab) {
 })
 
 chrome.tabs.onCreated.addListener(function(tab) {
-  updateTabs()
+  updateTabsInCurrentWindow()
 })
 
 chrome.tabs.onDetached.addListener(function(tab) {
-  updateTabs()
+  updateTabsInCurrentWindow()
 })
 
 function updateTabsInCurrentWindow() {

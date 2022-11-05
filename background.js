@@ -46,6 +46,6 @@ function updateTab(tab) {
   chrome.scripting.executeScript({
     target: { tabId: tab.id },
     args: [title],
-    func: (title) => { title'); document.title = title }
+    func: (title) => { document.title = title }
   })
 }

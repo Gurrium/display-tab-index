@@ -12,6 +12,10 @@ chrome.tabs.onDetached.addListener(function(tab) {
   updateTabsInCurrentWindow()
 })
 
+chrome.tabs.onRemoved.addListener(function(tab) {
+  updateTabsInCurrentWindow()
+})
+
 function updateTabsInCurrentWindow() {
   chrome.tabs.query({ currentWindow: true }, function(tabs) {
     tabs.forEach(tab => updateTab(tab))

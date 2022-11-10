@@ -1,6 +1,4 @@
 chrome.tabs.onUpdated.addListener(function(tabId, changeInfo, tab) {
-  if (changeInfo.status != "complete") { return }
-
   updateTab(tab)
 })
 
@@ -50,6 +48,8 @@ function updateTab(tab) {
   if (0 <= tab.index && tab.index <= 7) {
     title = `${indices[tab.index]} ${title}`
   }
+
+  if (tab.title === title) { return }
 
   chrome.scripting.executeScript({
     target: { tabId: tab.id },

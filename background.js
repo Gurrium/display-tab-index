@@ -18,10 +18,16 @@ chrome.tabs.onMoved.addListener(function(tab) {
   updateTabsInCurrentWindow()
 })
 
+chrome.windows.onCreated.addListener(function() {
+  chrome.windows.getAll({ populate: true }, windows => windows.forEach(window => updateTabs(window.tabs)))
+})
+
 function updateTabsInCurrentWindow() {
-  chrome.tabs.query({ currentWindow: true }, function(tabs) {
-    tabs.forEach(tab => updateTab(tab))
-  })
+  chrome.tabs.query({ currentWindow: true }, updateTabs)
+}
+
+function updateTabs(tabs) {
+  tabs.forEach(tab => updateTab(tab))
 }
 
 const indices = [
